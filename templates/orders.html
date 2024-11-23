@@ -1,0 +1,28 @@
+<!-- templates/orders.html -->
+
+{% extends "base.html" %}
+
+{% block title %}My Orders - E-commerce{% endblock %}
+
+{% block content %}
+    <h1>My Orders</h1>
+    {% if orders %}
+        <ul>
+            {% for order in orders %}
+                <li>
+                    <p>Order ID: {{ order.id }}</p>
+                    <p>Total Price: ${{ order.total_price }}</p>
+                    <p>Date: {{ order.created_at }}</p>
+                    <h3>Items:</h3>
+                    <ul>
+                        {% for item in order.items %}
+                            <li>{{ item.product.name }} - Quantity: {{ item.quantity }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have no orders.</p>
+    {% endif %}
+{% endblock %}

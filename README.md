@@ -100,6 +100,7 @@
 - **Concept:**
   - Use object-oriented programming (OOP) principles like inheritance to create reusable components.
   - Design patterns: Singleton (for managing the database connection), Factory (for creating product or user objects), and Decorator (for adding authentication), Strategy could be used also.
+  - Use MVC (Model-View-Controller) to create the classes
   
 - **App Logic:**
   - Define classes for each entity:

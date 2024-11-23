@@ -1,0 +1,38 @@
+<!-- templates/admin_products.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Admin - Manage Products{% endblock %}
+
+{% block content %}
+    <h1>Manage Products</h1>
+    <p><a href="{{ url_for('add_product') }}">Add New Product</a></p>
+    <p><a href="{{ url_for('index') }}">Back to Home</a></p>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Actions</th>
+        </tr>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>${{ product.price }}</td>
+                <td>{{ product.stock }}</td>
+                <td>
+                    <a href="{{ url_for('edit_product', product_id=product.id) }}">Edit</a>
+                    <form action="{{ url_for('delete_product', product_id=product.id) }}" method="post" style="display:inline;">
+                        <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this product?');">
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">No products available.</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
