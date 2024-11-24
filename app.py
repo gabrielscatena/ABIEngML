@@ -4,8 +4,9 @@
 Main application module for the e-commerce backend.
 """
 
-from flask import Flask, render_template, redirect, url_for, request, flash, session, abort
+from flask import Flask, render_template, redirect, url_for, request, flash, jsonify, session, abort
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from models import Base, User, Product, CartItem, Order, OrderItem
 from werkzeug.security import generate_password_hash, check_password_hash
 from typing import Optional, List
@@ -20,15 +21,17 @@ from datetime import datetime
 
 logging.basicConfig(level=logging.DEBUG)
 
+# Configure the database
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'test' ### TIRAR
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ecommerce.db'
 
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
-# Configure the database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ecommerce.db'
+# Setup the JWT manager
+jwt = JWTManager(app)
 
 # Initialize the database
 app.engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
@@ -83,24 +86,36 @@ def register():
         username: str = request.form['username']
         password: str = request.form['password']
         db: Session = app.SessionLocal()
-        existing_user: Optional[User] = db.query(User).filter_by(username=username).first()
+
+        # Check if username is empty
         if not username:
             flash('Username cannot be empty.')
+            return redirect(url_for('register'))
+
+        # Check if the username already exists
+        existing_user: Optional[User] = db.query(User).filter_by(username=username).first()
         if existing_user:
             db.close()
             flash('Username already exists.')
-            return redirect(url_for('register'))
+            return redirect(url_for('register')) 
+
+        # Check if password length is valid
         if len(password) < 6:
             flash('Password must be at least 6 characters long.')
             return redirect(url_for('register'))
+
+        # Hash the password and store the new user
         hashed_password: str = generate_password_hash(password, method='scrypt')
         new_user = User(username=username, password_hash=hashed_password)
         db.add(new_user)
         db.commit()
         db.close()
+
         flash('Registration successful. Please log in.')
         return redirect(url_for('login'))
+
     return render_template('register.html')
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

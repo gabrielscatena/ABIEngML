@@ -6,6 +6,18 @@
 
 {% block content %}
     <h1>Register</h1>
+
+    <!-- Display Flash Messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
     <form action="{{ url_for('register') }}" method="post">
         <p>
             Username: <input type="text" name="username" required>
@@ -17,5 +29,7 @@
             <input type="submit" value="Register">
         </p>
     </form>
+
     <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a>.</p>
 {% endblock %}
+
