@@ -6,34 +6,18 @@
 
 {% block content %}
     <h1>Your Shopping Cart</h1>
-    <p><a href="{{ url_for('index') }}">Continue Shopping</a></p>
+    <p><a href="{{ url_for('product.index') }}">Continue Shopping</a></p>
     {% if cart_items %}
         <table border="1">
-            <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Subtotal</th>
-                <th>Action</th>
-            </tr>
-            {% set total = 0 %}
+            <!-- Table content -->
             {% for item in cart_items %}
-                {% set subtotal = item.product.price * item.quantity %}
-                {% set total = total + subtotal %}
                 <tr>
-                    <td>{{ item.product.name }}</td>
-                    <td>{{ item.quantity }}</td>
-                    <td>${{ item.product.price }}</td>
-                    <td>${{ subtotal }}</td>
-                    <td><a href="{{ url_for('remove_from_cart', item_id=item.id) }}">Remove</a></td>
+                    <!-- Item details -->
+                    <td><a href="{{ url_for('cart.remove_from_cart', item_id=item.id) }}">Remove</a></td>
                 </tr>
             {% endfor %}
-            <tr>
-                <td colspan="3"><strong>Total</strong></td>
-                <td colspan="2"><strong>${{ total }}</strong></td>
-            </tr>
         </table>
-        <p><a href="{{ url_for('place_order') }}">Place Order</a></p>
+        <p><a href="{{ url_for('order.place_order') }}">Place Order</a></p>
     {% else %}
         <p>Your cart is empty.</p>
     {% endif %}

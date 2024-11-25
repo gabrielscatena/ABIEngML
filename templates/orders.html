@@ -10,16 +10,19 @@
         <ul>
             {% for order in orders %}
                 <li>
-                    <p>Order ID: {{ order.id }}</p>
-                    <p>Total Price: ${{ order.total_price }}</p>
-                    <p>Date: {{ order.created_at }}</p>
+                    <p><strong>Order ID:</strong> {{ order.id }}</p>
+                    <p><strong>Total Price:</strong> ${{ "%.2f"|format(order.total_price) }}</p>
+                    <p><strong>Date:</strong> {{ order.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</p>
                     <h3>Items:</h3>
                     <ul>
                         {% for item in order.items %}
-                            <li>{{ item.product.name }} - Quantity: {{ item.quantity }}</li>
+                            <li>{{ item.product.name }} - <strong>Quantity:</strong> {{ item.quantity }}</li>
+                        {% else %}
+                            <li>No items in this order.</li>
                         {% endfor %}
                     </ul>
                 </li>
+                <hr>
             {% endfor %}
         </ul>
     {% else %}

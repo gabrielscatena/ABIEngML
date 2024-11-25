@@ -82,7 +82,7 @@ class EcommerceTestCase(unittest.TestCase):
 
     def place_order_and_verify_cart(self, client, product_id):
         response = client.get(f'/cart/add/{product_id}', follow_redirects=True)
-        self.assertIn(b'Product added to cart.', response.data)  # Confirm the product was added to the cart
+        self.assertIn(b'Added Test Product to your cart.', response.data)
 
         response = client.get('/order/place', follow_redirects=True)
         self.assertIn(b'Order placed successfully.', response.data)  # Confirm the order was placed successfully
@@ -266,14 +266,14 @@ class EcommerceTestCase(unittest.TestCase):
         self.create_product('Test Product', 'Test Description', 10.0, 100)
 
         db_product = self.db.query(Product).filter_by(name='Test Product').first()
-        assert db_product is not None  # Ensure the product is added to the DB
+        assert db_product is not None  
 
         with self.client as client:
             response = client.post('/login', data={'username': 'testuser', 'password': 'testpass'}, follow_redirects=True)
             self.assertIn(b'Logout', response.data)
 
             response = client.get(f'/cart/add/{db_product.id}', follow_redirects=True)
-            self.assertIn(b'Product added to cart.', response.data)
+            self.assertIn(b'Added Test Product to your cart.', response.data)
 
             response = client.get('/order/place', follow_redirects=True)
             self.assertIn(b'Order placed successfully.', response.data)

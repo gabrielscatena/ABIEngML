@@ -6,7 +6,7 @@
 
 {% block content %}
     <h1>Add New Product</h1>
-    <form action="{{ url_for('add_product') }}" method="post">
+    <form action="{{ url_for('product.add_product') }}" method="post">
         <p>
             Name: <input type="text" name="name" required>
         </p>
@@ -23,5 +23,5 @@
             <input type="submit" value="Add Product">
         </p>
     </form>
-    <p><a href="{{ url_for('admin_products') }}">Back to Product List</a></p>
+    <p><a href="{{ url_for('product.admin_products') }}">Back to Product List</a></p>
 {% endblock %}

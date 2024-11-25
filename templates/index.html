@@ -13,10 +13,10 @@
                 <p>{{ product.description }}</p>
                 <p>Price: ${{ product.price }}</p>
                 <p>Stock: {{ product.stock }}</p>
-                {% if current_user.is_authenticated %}
-                    <a href="{{ url_for('add_to_cart', product_id=product.id) }}">Add to Cart</a>
+                {% if current_user and current_user.is_authenticated %}
+                    <a href="{{ url_for('cart.add_to_cart', product_id=product.id) }}">Add to Cart</a>
                 {% else %}
-                    <p><a href="{{ url_for('login') }}">Login</a> to purchase</p>
+                    <p><a href="{{ url_for('auth.login') }}">Login</a> to purchase</p>
                 {% endif %}
             </li>
         {% else %}
