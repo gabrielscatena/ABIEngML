@@ -265,6 +265,7 @@ pytest tests.py
 ## **Project Folder Structure**
 ```bash
 .env  # .env
+.env.example # .env is in .gitignore
 .git/
 README.md  # README.md
 __init__.py  # __init__.py
@@ -313,6 +314,18 @@ templates/
 tests.py  # tests.py
 ```
 
+**Example of content and variable in .env file**
+```bash
+SECRET_KEY=
+SQLALCHEMY_DATABASE_URI=
+JWT_SECRET_KEY=
+JWT_TOKEN_LOCATION=
+JWT_COOKIE_SECURE=
+JWT_COOKIE_CSRF_PROTECT=
+JWT_COOKIE_SAMESITE=
+JWT_ACCESS_COOKIE_PATH=
+JWT_COOKIE_CSRF_PROTECT=
+```
 ---
 
 ## **Design Decisions**
