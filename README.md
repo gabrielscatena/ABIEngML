@@ -210,7 +210,7 @@ This project demonstrates the implementation of Python-based web development wit
 ### Steps
 1. Clone the repository:
    ```bash
-   git clone https://https://github.com/gabrielscatena/ABIEngML.git
+   git clone https://github.com/gabrielscatena/ABIEngML.git
    cd ABIEngML
    ```
 
