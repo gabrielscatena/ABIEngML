@@ -3,6 +3,8 @@
 """
 Script to create an admin user.
 """
+# Run at "."
+# Usage: python create_admin.py
 
 from database import SessionLocal
 from models import User

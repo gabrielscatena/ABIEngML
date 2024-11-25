@@ -1,4 +1,13 @@
+# create_files_strategy_and_MVC.py
+
+"""
+Script to create files and directories to implement Strategy, MVC and JWT usage.
+"""
+
 import os
+
+# Run at "."
+# Usage: python create_files_strategy_and_MVC.py
 
 # List of files and directories to create
 list_of_files = [

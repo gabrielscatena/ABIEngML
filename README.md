@@ -1,6 +1,27 @@
-# ABIEngML
+# ABEESnBev - Simple E-Commerce Backend
 
-# Plan of Action for Simple E-commerce Backend
+## **Table of Contents**
+- [Introduction](#introduction)
+- [Plan of Action for Simple E-commerce Backend](#plan-of-action-for-simple-e-commerce-backend)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Testing](#testing)
+- [Design Decisions](#design-decisions)
+- [Known Issues](#known-issues)
+- [Future Improvements](#future-improvements)
+- [License](#license)
+
+---
+
+## **Introduction**
+**ABEESnBev** is a simple e-commerce backend system designed to simulate an online shopping experience. Users can register, browse products, add items to their carts, and place orders. Administrators can manage products, ensuring only authorized actions are taken.
+
+This project demonstrates the implementation of Python-based web development with proper testing, modularity, and clean architecture principles.
+
+---
+## **Plan of Action for Simple E-commerce Backend**
 
 ## 1. Requirements
 1.1 User Management:
@@ -98,8 +119,8 @@
 
 ## 5. Write the Core Application Logic in `app.py`
 - **Concept:**
-  - Use object-oriented programming (OOP) principles like inheritance to create reusable components.
-  - Design patterns: Singleton (for managing the database connection), Factory (for creating product or user objects), and Decorator (for adding authentication), Strategy could be used also.
+  - Use object-oriented programming (OOP) principles and create reusable components.
+  - Design patterns: Singleton (for managing the database connection), Factory (for creating product or user objects), and Decorator (for adding authentication), Strategy should be used also.
   - Use MVC (Model-View-Controller) to create the classes
   
 - **App Logic:**
@@ -140,3 +161,147 @@
   - Any learnings encountered during implementation (e.g., challenges with hashing passwords, implementing role-based access).
   
 - Create a final commit in Git and push the code to the repository.
+
+--- 
+
+## **Features**
+### **User Management**
+- User registration and login.
+- Secure password storage with hashing (bcrypt).
+- Role-based access control (admin vs regular users).
+
+### **Product Management**
+- Admins can add, edit, and delete products.
+- Regular users can view a list of products and their details.
+
+### **Cart and Order Management**
+- Users can add items to a cart.
+- Users can view their cart, place orders, and clear their cart after placing an order.
+- Order history is stored for future reference.
+
+### **Error Handling**
+- Comprehensive error handling for invalid inputs, unauthorized access, and missing products.
+- Custom error pages for `403 Forbidden` and `404 Not Found`.
+
+### **Testing**
+- Unit tests for critical functions such as user registration, product addition, and order placement.
+- Test coverage includes authentication, CRUD operations, and cart functionalities.
+
+---
+
+## **Technologies Used**
+- **Backend Framework**: Flask
+- **Database**: SQLite (persistent and lightweight database)
+- **Authentication**: Flask-JWT-Extended
+- **Frontend**: HTML, CSS (with Jinja2 templating for dynamic content)
+- **Testing**: Pytest
+- **Other**:
+  - SQLAlchemy (ORM for database management)
+
+---
+
+## **Installation**
+
+### Prerequisites
+- Python 3.10 or higher
+- pip (Python package installer)
+
+### Steps
+1. Clone the repository:
+   ```bash
+   git clone https://https://github.com/gabrielscatena/ABIEngML.git
+   cd ABIEngML
+   ```
+
+2. Create a virtual environment:
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate   # For Windows: venv\Scripts\activate
+   ```
+
+3. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Run the application:
+   ```bash
+   python app.py
+   ```
+
+---
+
+## **Usage**
+
+### Admin Panel
+- Log in with an admin account.
+- Access the product management interface via the "Admin Dashboard".
+- Add, edit, or delete products.
+
+### Shopping
+- Register as a user.
+- Browse products and add them to your cart.
+- Place an order and view your order history.
+
+---
+
+## **Testing**
+
+### Run Tests
+To run all unit tests, execute the following command:
+```bash
+pytest tests.py
+```
+
+### Coverage
+- Tests are written for:
+  - User registration and login.
+  - Admin product management.
+  - Cart and order functionalities.
+- Ensure the codebase is covered with meaningful tests to avoid regressions.
+
+---
+
+## **Design Decisions**
+
+1. **Authentication with JWT**:
+   - JWT tokens ensure secure and stateless authentication.
+   - Simplifies session management in distributed systems.
+
+2. **ORM with SQLAlchemy**:
+   - Using SQLAlchemy improves maintainability and reduces direct database query handling.
+
+3. **Separation of Concerns**:
+   - Separate routes for user, admin, product, and cart functionalities.
+   - Templates and static assets are modularized for easy customization.
+
+4. **Unit Testing with Pytest**:
+   - Extensive test coverage ensures critical functionalities are robust.
+   - Tests validate edge cases like invalid inputs and unauthorized access.
+
+---
+
+## **Known Issues**
+- Cart total is not displayed on the cart page.
+- Flash messages lack visual styling (e.g., success vs error feedback).
+- Application is not fully responsive on mobile devices.
+- No payment option.
+---
+
+## **Future Improvements**
+1. **Enhanced Styling**:
+   - Add mobile responsiveness using media queries.
+   - Style flash messages to provide better feedback.
+2. **Order History**:
+   - Create a dedicated page for users to view their past orders.
+3. **Pagination**:
+   - Add pagination for product lists to handle a larger dataset.
+4. **Error Handling**:
+   - Add logging for server-side errors.
+
+---
+
+## **License**
+## License
+This project is licensed under the MIT License. See the [LICENSE](./docs/LICENSE) file for details.
+```

@@ -4,8 +4,8 @@
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #121212; /* Dark Gray */
-    color: #ffffff; /* White */
+    background-color: #ffffff; /* Dark Gray */
+    color: #121212;
 }
 
 /* Header */
@@ -59,6 +59,13 @@ header {
     color: #fffacd; /* Lighter Yellow */
 }
 
+/* Ensure specificity if needed */
+nav p {
+    color: #ffd700; /* Yellow text */
+    background-color: transparent;
+}
+
+
 /* Main Content */
 main {
     padding: 20px;
@@ -94,7 +101,6 @@ h1 {
     justify-content: space-between;
     align-items: flex-start; /* Left align items within the card */
 }
-
 
 /* Add padding to individual product */
 .product-card p, .product-card h2 {

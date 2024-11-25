@@ -1,7 +1,16 @@
+# create_files.py
+
+"""
+Script to create files and directories.
+"""
+
+# Run at "."
+# Usage: python create_files.py
+
 ## Project Structure
+# - `docs/Approach_Decisions.md`: Contains the approach and design decisions made during development.
 
-# - `Approach_Decisions.md`: Contains the approach and design decisions made during development.
-
+# - .env: Contains variables
 # - `__init__.py`: 
 # - `app.py`: Main application file containing routes and application logic.
 # - `models.py`: Contains the database models.
@@ -30,7 +39,7 @@
 
 import os
 # Create the following files in the project directory:
-list_of_files = ['__init__.py', 'app.py', 'models.py', 'database.py', 'tests.py', 'requirements.txt', 'Approach_Decisions.md',
+list_of_files = ['.env','__init__.py', 'app.py', 'models.py', 'database.py', 'tests.py', 'requirements.txt', 'Approach_Decisions.md',
                  'templates/base.html', 'templates/index.html', 'templates/header.html', 'templates/footer.html', 'templates/login.html', 
                  'templates/register.html', 'templates/cart.html', 'templates/orders.html', 'templates/admin_products.html',
                  'templates/add_product.html', 'templates/edit_product.html', 'templates/404.html', 'templates/403.html',
