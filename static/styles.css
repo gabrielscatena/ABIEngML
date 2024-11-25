@@ -59,7 +59,6 @@ header {
     color: #fffacd; /* Lighter Yellow */
 }
 
-/* Ensure specificity if needed */
 nav p {
     color: #ffd700; /* Yellow text */
     background-color: transparent;
